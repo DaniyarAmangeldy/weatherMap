@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/.android/build-cache/62da7dffcfb3b77332c99524b62e51b6f7b28d34/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bdcc2a9572f18b8c90a3a157cab6cdfc97c6c736">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e4343f1e1af87b5ee42c5ea4b31d6daffe81f1bb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="094089d3904384389420c2569f04ca348e2ec151">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d535f799998025befab32cdee8180244dc013d05/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/.android/build-cache/97094e07ad32e4e5e43b2d70f1ee51e22a69a7a1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6003d64df88a6ce5e961fa2bad7f1b9b97689ac1">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5c0099051331ff8edb05cb2212ec99051c31e4b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_187887797029a2975b75470408fcfe03338c30d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/.android/build-cache/f6dd84d68eb737845d47f94fd67fa338721d1de8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c7626a9aa507bbbdc16188bc9a9f9bf3370c1ddd">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2366544acdb0e6abbc904b492da61c2702ece958/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/daniyaramangeldy/.android/build-cache/1c00f8eaca6257057c79cf5173e02284fe90d84f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19696dc358ac668e341f28c41e3387d61ccdb81d">
+        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_db25cde872296208aec8f635539c58375ba6b8db/classes.dex" />
+    </item>
+
+</items>
