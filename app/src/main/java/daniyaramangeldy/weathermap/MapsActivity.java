@@ -1,19 +1,28 @@
 package daniyaramangeldy.weathermap;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -24,8 +33,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
+import daniyaramangeldy.weathermap.models.City;
+import daniyaramangeldy.weathermap.models.Info;
+import daniyaramangeldy.weathermap.models.Weather;
+import daniyaramangeldy.weathermap.models.WeatherResponse;
+
+import static daniyaramangeldy.weathermap.LocationService.EXTRA_REQUEST_RESULT;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapClickListener {
@@ -33,31 +48,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final int REQUEST_LOCATION = 10;
     private static final String TAG = "MapsActivity";
     public static final int REQUEST_CAMERA = 11;
+
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
     private BottomSheetBehavior mBottomSheetBehavior;
-    private ArrayList<String> listField = new ArrayList<>();
+    private LatLng currentCoor;
+    private LatLng almaty;
+    private RecyclerView list;
+    private ProgressBar progressBar;
+    private ConstraintLayout todayLayout;
+    private TextView weatherDesc;
+    private TextView weatherTemp;
+    private TextView weatherDate;
+    private TextView currentCity;
+    private ImageView weatherIcon;
+    private View bottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        View bottomSheet = findViewById(R.id.bottom_sheet);
-        RecyclerView list = (RecyclerView) findViewById(R.id.list);
-//        for(int i=0;i<50;i++){
-//            listField.add(i+"");
-//        }
-        Log.d(TAG, "onCreate: "+listField.size());
+        bindViews();
+        list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setPeekHeight(300);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//        SimpleAdapter adapter = new SimpleAdapter(listField);
-//        list.setAdapter(adapter);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        almaty = new LatLng(43.2220, 76.8512);
+    }
+
+    private void bindViews() {
+        bottomSheet = findViewById(R.id.bottom_sheet);
+        list = (RecyclerView) findViewById(R.id.rv);
+        todayLayout = (ConstraintLayout) findViewById(R.id.todayLayout);
+        weatherTemp = (TextView) findViewById(R.id.weatherTemp);
+        weatherDate = (TextView) findViewById(R.id.weatherDate);
+        weatherDesc = (TextView) findViewById(R.id.weatherName);
+        currentCity = (TextView) findViewById(R.id.city);
+        weatherIcon = (ImageView) findViewById(R.id.weatherImage);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
 
     }
 
@@ -68,6 +101,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case REQUEST_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     enableMyLocation();
+                } else {
+                    currentCoor = almaty;
+                    MakeRequestWeather(currentCoor);
                 }
                 break;
             case REQUEST_CAMERA:
@@ -76,15 +112,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    private void MakeRequestWeather(LatLng currentCoor) {
+        todayLayout.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        LocationService.startActionLocation(getApplicationContext(),currentCoor);
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
+        BroadcastReceiver receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Gson gson = new Gson();
+                WeatherResponse response = gson.fromJson(intent.getStringExtra(EXTRA_REQUEST_RESULT),WeatherResponse.class);
+                progressBar.setVisibility(View.GONE);
+                todayLayout.setVisibility(View.VISIBLE);
+                fillTodayWeather(response.getCity(),response.getInfoList().get(0));
+                SimpleAdapter adapter = new SimpleAdapter();
+                adapter.setResponse(response);
+                list.setAdapter(adapter);
+
+            }
+        };
+        broadcastManager.registerReceiver(receiver,new IntentFilter("filter1"));
+    }
+
+    private void fillTodayWeather(City city, Info info) {
+        Icons icons = new Icons();
+        Weather weather = info.getWeather().get(0);
+        weatherIcon.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),icons.getIcon(weather.getIcon())));
+        currentCity.setText(city.getName());
+        weatherTemp.setText(String.format("%s°C",(int)info.getTemp().getTemp()));
+        weatherDesc.setText(weather.getDesc());
+        weatherDate.setText(DateUtils.setTime(info.getTimeInMillis()));
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng almaty = new LatLng(43.2220, 76.8512);
         MarkerOptions marker = new MarkerOptions().position(almaty);
         mMap.addMarker(marker);
         mMap.animateCamera(CameraUpdateFactory.newLatLng(almaty));
         mMap.setOnMapClickListener(this);
-//        checkCameraPermissionAndRequest();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -93,8 +159,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         REQUEST_LOCATION
                 );
             }
+
         } else
             enableMyLocation();
+
 
     }
 
@@ -118,7 +186,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            Log.d(TAG,String.format("onSuccess: %s %s", location.getLatitude(), location.getLongitude()));
+                            LatLng myLocation = new LatLng(location.getLatitude(),location.getLongitude());
+                            MakeRequestWeather(myLocation);
                         }
 
                     }
@@ -127,10 +196,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latLng) {
-        String template = "onMapClick: %s %s";
-        double latitude = latLng.latitude;
-        double longitude = latLng.longitude;
-        Log.d(TAG, String.format(template,latitude,longitude));
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(latLng));
+        MakeRequestWeather(latLng);
 
     }
 }
