@@ -3,21 +3,111 @@
 
     <item
         is-multidex="true"
-        jar="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/marsstudio/.android/build-cache/10003630315e2148c1802d220a2cde99a1ca3ca8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a2d9cd43adbe7599a78f2293273a77881c1909a">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_72cb214e790c1ffc177289328d33e96c3e1353e8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.8.1_1b8dfd8e0bb25ac0c6da968ffc12994972a69947/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_804115b3abe6d0a97cb95265f1928abf491f97df/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.android/build-cache/55dc1caa974e605515414b7b16ad0a11ec568bb3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="db939a450ea2a721db84e774bf108e20c44a8a1d">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_044f6cd7e06df9bbe637752cd262c6021b92103e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.android/build-cache/54ad62a777aac07fb2a378926abef668c51cece8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="240e5a7c620376184f3168cfdd36315b97b1fe07">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cd8dfacb80a8df4014d42addb86f47648054af6a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.android/build-cache/5f224c8327727a73e26027f31568d1b926648bbc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a71be5f29a1c1e3fd3e84472742668f101a5b936">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e6169c0f28cbc9251dc8afdf093012b672e66bef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.android/build-cache/85e2902cb2b926f8600c3ba49a7b3a3ccc22f14e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="86baa7d1051901fc1b8e7f596732f71f32175bde">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_29b9f8b15a1770e504a9a74e914d4af12985e047/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_9a10967d6cd3cc6cd6fae925348e3d0db642dbde/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.android/build-cache/be1abcd89dd0ebe464e8c88be5aacc75b47e2ca0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_da83601a8094c547ecb186ff45991e8bc3da6515/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="68e0766ad74e6a7b1efa7c7fb71ac66ad00e303b">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c8ee4b26f065e49eede16790eace989fa65d2064/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.1/2a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0/gson-2.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.8.1_08a74c995e480e9da0594fc5aab987523cc8e210/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_187887797029a2975b75470408fcfe03338c30d7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="966bfa73a39464f3c948a71d5ec07b3cdb792bc4">
-        <dex dex="/Users/daniyaramangeldy/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d535f799998025befab32cdee8180244dc013d05/classes.dex" />
+        <dex dex="/Users/marsstudio/AndroidStudioProjects/weatherMap/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f05fb4e9442297f4be3d9932331a71241ee15c04/classes.dex" />
     </item>
 
 </items>

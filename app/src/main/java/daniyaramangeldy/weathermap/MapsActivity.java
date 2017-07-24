@@ -1,6 +1,7 @@
 package daniyaramangeldy.weathermap;
 
 import android.Manifest;
+import android.animation.LayoutTransition;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +17,12 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -63,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView currentCity;
     private ImageView weatherIcon;
     private View bottomSheet;
-
+    private WeatherResponse response;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bindViews();
         list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mBottomSheetBehavior.setPeekHeight(300);
+        mBottomSheetBehavior.setPeekHeight(0);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         almaty = new LatLng(43.2220, 76.8512);
@@ -113,7 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void MakeRequestWeather(LatLng currentCoor) {
-        todayLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         LocationService.startActionLocation(getApplicationContext(),currentCoor);
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
@@ -121,13 +123,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onReceive(Context context, Intent intent) {
                 Gson gson = new Gson();
-                WeatherResponse response = gson.fromJson(intent.getStringExtra(EXTRA_REQUEST_RESULT),WeatherResponse.class);
+                response = gson.fromJson(intent.getStringExtra(EXTRA_REQUEST_RESULT),WeatherResponse.class);
                 progressBar.setVisibility(View.GONE);
-                todayLayout.setVisibility(View.VISIBLE);
+                mBottomSheetBehavior.setPeekHeight(300);
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                if(list.getAdapter() == null) {
+                    SimpleAdapter adapter = new SimpleAdapter();
+                    adapter.setResponse(response);
+                    list.setAdapter(adapter);
+                }else{
+                    ((SimpleAdapter) list.getAdapter()).setResponse(response);
+                    list.getAdapter().notifyDataSetChanged();
+                }
                 fillTodayWeather(response.getCity(),response.getInfoList().get(0));
-                SimpleAdapter adapter = new SimpleAdapter();
-                adapter.setResponse(response);
-                list.setAdapter(adapter);
 
             }
         };
@@ -142,6 +150,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         weatherTemp.setText(String.format("%s°C",(int)info.getTemp().getTemp()));
         weatherDesc.setText(weather.getDesc());
         weatherDate.setText(DateUtils.setTime(info.getTimeInMillis()));
+
+
     }
 
     @Override
